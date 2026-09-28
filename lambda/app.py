@@ -9,15 +9,12 @@ def lambda_handler(event, context):
     source_bucket = event["Records"][0]["s3"]["bucket"]["name"]
     key = event["Records"][0]["s3"]["object"]["key"]
 
-    # Only process jpg files
     if not key.lower().endswith(".jpg"):
         return
 
-    # Get image from S3
     response = s3.get_object(Bucket=source_bucket, Key=key)
     image_content = response["Body"].read()
 
-    # Remove EXIF metadata
     image = Image.open(io.BytesIO(image_content))
     data = list(image.getdata())
 
@@ -30,7 +27,6 @@ def lambda_handler(event, context):
 
     destination_bucket = os.environ["DEST_BUCKET"]
 
-    # Upload cleaned image to bucket B
     s3.put_object(
         Bucket=destination_bucket,
         Key=key,
