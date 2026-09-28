@@ -13,3 +13,15 @@ variable "bucket_b_name" {
   description = "Destination S3 bucket"
   type        = string
 }
+
+variable "user_a_name" {
+  description = "IAM username for the assessment user with read/write access to Bucket A"
+  type        = string
+  default     = "user-a"
+}
+
+variable "user_b_name" {
+  description = "IAM username for the assessment user with read access to Bucket B"
+  type        = string
+  default     = "user-b"
+}

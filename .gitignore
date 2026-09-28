@@ -1,8 +1,12 @@
 .terraform/
 *.tfstate
-*.tfstate.backup
+*.tfstate.*
+venv/
 __pycache__/
-*.pyc
+*.py[cod]
+.DS_Store
+.env
+.venv/
+terraform/.build/
 lambda/PIL/
 lambda/*.dist-info/
-.DS_Store
